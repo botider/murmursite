@@ -1,3 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Murmur</title><link>https://botider.github.io/murmursite/post/</link><description>Recent content in Posts on Murmur</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 09 Jan 2026 15:10:24 +0800</lastBuildDate><atom:link href="https://botider.github.io/murmursite/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello_hugo</title><link>https://botider.github.io/murmursite/post/hello_hugo/</link><pubDate>Fri, 09 Jan 2026 15:10:24 +0800</pubDate><guid>https://botider.github.io/murmursite/post/hello_hugo/</guid><description>&lt;h2 id="intro"&gt;Intro&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Murmur</title><link>https://botider.github.io/murmursite/post/</link><description>Recent content in Posts on Murmur</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 10 Jan 2026 08:14:42 +0800</lastBuildDate><atom:link href="https://botider.github.io/murmursite/post/index.xml" rel="self" type="application/rss+xml"/><item><title>深入淺出 Copilot Subagent：擺脫 Context 泥沼</title><link>https://botider.github.io/murmursite/post/20260110/</link><pubDate>Sat, 10 Jan 2026 08:14:42 +0800</pubDate><guid>https://botider.github.io/murmursite/post/20260110/</guid><description>&lt;p&gt;在這篇文章中，我想探討以下幾個問題：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;為什麼我們需要 Subagent？&lt;/li&gt;
+&lt;li&gt;在真實的開發流程中如何應用？&lt;/li&gt;
+&lt;li&gt;它與 Skill 有什麼本質上的區別？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="為什麼需要-subagent"&gt;為什麼需要 Subagent？&lt;/h2&gt;
+&lt;p&gt;在 2025 年 10 月，GitHub Copilot for VS Code 將 &amp;ldquo;chatmodes&amp;rdquo; 升級為 &amp;ldquo;agents&amp;rdquo;，並帶來了強大的 &amp;ldquo;subagent&amp;rdquo; 能力。這讓主 Agent 能夠啟動「另一個擁有乾淨 Context、甚至使用不同模型的獨立 Agent」。&lt;/p&gt;
+&lt;p&gt;單一 Agent 最大的痛點在於：&lt;strong&gt;當對話時間拉長，Context 累積過多雜訊後，回應品質會顯著下降（變笨）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;Subagent 的出現解決了這個問題：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;乾淨的上下文 (Clean Context)&lt;/strong&gt;：每次任務都從零開始，避免歷史包袱。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;非阻塞執行 (Non-blocking)&lt;/strong&gt;：多工處理時，Subagent 在背景平行運作，不會卡住你的主對話框。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;計畫委派 (Delegation)&lt;/strong&gt;：在 Plan Mode 下，主 Agent 可以將拆解後的步驟交由 Subagent 執行。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="實際應用-real-dev-scenario"&gt;實際應用 (Real Dev Scenario)&lt;/h2&gt;
+&lt;h3 id="1-設定-setup"&gt;1. 設定 (Setup)&lt;/h3&gt;
+&lt;p&gt;首先，我們需要在 &lt;code&gt;.github/agents/&lt;/code&gt; 目錄下定義 Agent：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Scope&lt;/strong&gt;：設定是個人專用還是專案共享。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Description&lt;/strong&gt;：這是關鍵。你需要清楚描述這個 Agent &lt;strong&gt;能做什麼&lt;/strong&gt; 以及 &lt;strong&gt;何時該用&lt;/strong&gt;。（例如：&lt;em&gt;當&lt;/em&gt;你需要修改 C# 程式碼時&amp;hellip; &lt;em&gt;請使用&lt;/em&gt;此 Agent）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tools&lt;/strong&gt;：定義這個 Subagent 可調用的指令、MCP 或 Skill。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-執行-run"&gt;2. 執行 (Run)&lt;/h3&gt;
+&lt;p&gt;啟動方式相當靈活：&lt;/p&gt;</description></item><item><title>Hello_hugo</title><link>https://botider.github.io/murmursite/post/hello_hugo/</link><pubDate>Fri, 09 Jan 2026 15:10:24 +0800</pubDate><guid>https://botider.github.io/murmursite/post/hello_hugo/</guid><description>&lt;h2 id="intro"&gt;Intro&lt;/h2&gt;
 &lt;p&gt;This is &lt;strong&gt;bold&lt;/strong&gt; text, and this is &lt;em&gt;emphasized&lt;/em&gt; text.&lt;/p&gt;
 &lt;p&gt;Visit the &lt;a href="https://gohugo.io"&gt;Hugo&lt;/a&gt; website!&lt;/p&gt;</description></item></channel></rss>

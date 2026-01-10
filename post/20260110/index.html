@@ -1,0 +1,43 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><title>深入淺出 Copilot Subagent：擺脫 Context 泥沼 | Murmur</title><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="在這篇文章中，我想探討以下幾個問題：
+
+為什麼我們需要 Subagent？
+在真實的開發流程中如何應用？
+它與 Skill 有什麼本質上的區別？
+
+為什麼需要 Subagent？
+在 2025 年 10 月，GitHub Copilot for VS Code 將 &ldquo;chatmodes&rdquo; 升級為 &ldquo;agents&rdquo;，並帶來了強大的 &ldquo;subagent&rdquo; 能力。這讓主 Agent 能夠啟動「另一個擁有乾淨 Context、甚至使用不同模型的獨立 Agent」。
+單一 Agent 最大的痛點在於：當對話時間拉長，Context 累積過多雜訊後，回應品質會顯著下降（變笨）。
+Subagent 的出現解決了這個問題：
+
+乾淨的上下文 (Clean Context)：每次任務都從零開始，避免歷史包袱。
+非阻塞執行 (Non-blocking)：多工處理時，Subagent 在背景平行運作，不會卡住你的主對話框。
+計畫委派 (Delegation)：在 Plan Mode 下，主 Agent 可以將拆解後的步驟交由 Subagent 執行。
+
+實際應用 (Real Dev Scenario)
+1. 設定 (Setup)
+首先，我們需要在 .github/agents/ 目錄下定義 Agent：
+
+Scope：設定是個人專用還是專案共享。
+Description：這是關鍵。你需要清楚描述這個 Agent 能做什麼 以及 何時該用。（例如：當你需要修改 C# 程式碼時&mldr; 請使用此 Agent）。
+Tools：定義這個 Subagent 可調用的指令、MCP 或 Skill。
+
+2. 執行 (Run)
+啟動方式相當靈活："><meta name=generator content="Hugo 0.154.3"><meta name=robots content="index, follow"><link rel=stylesheet href=/murmursite/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css><link rel=canonical href=https://botider.github.io/murmursite/post/20260110/><meta property="og:url" content="https://botider.github.io/murmursite/post/20260110/"><meta property="og:site_name" content="Murmur"><meta property="og:title" content="深入淺出 Copilot Subagent：擺脫 Context 泥沼"><meta property="og:description" content="在這篇文章中，我想探討以下幾個問題：
+為什麼我們需要 Subagent？ 在真實的開發流程中如何應用？ 它與 Skill 有什麼本質上的區別？ 為什麼需要 Subagent？ 在 2025 年 10 月，GitHub Copilot for VS Code 將 “chatmodes” 升級為 “agents”，並帶來了強大的 “subagent” 能力。這讓主 Agent 能夠啟動「另一個擁有乾淨 Context、甚至使用不同模型的獨立 Agent」。
+單一 Agent 最大的痛點在於：當對話時間拉長，Context 累積過多雜訊後，回應品質會顯著下降（變笨）。
+Subagent 的出現解決了這個問題：
+乾淨的上下文 (Clean Context)：每次任務都從零開始，避免歷史包袱。 非阻塞執行 (Non-blocking)：多工處理時，Subagent 在背景平行運作，不會卡住你的主對話框。 計畫委派 (Delegation)：在 Plan Mode 下，主 Agent 可以將拆解後的步驟交由 Subagent 執行。 實際應用 (Real Dev Scenario) 1. 設定 (Setup) 首先，我們需要在 .github/agents/ 目錄下定義 Agent：
+Scope：設定是個人專用還是專案共享。 Description：這是關鍵。你需要清楚描述這個 Agent 能做什麼 以及 何時該用。（例如：當你需要修改 C# 程式碼時… 請使用此 Agent）。 Tools：定義這個 Subagent 可調用的指令、MCP 或 Skill。 2. 執行 (Run) 啟動方式相當靈活："><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2026-01-10T08:14:42+08:00"><meta property="article:modified_time" content="2026-01-10T08:14:42+08:00"><meta itemprop=name content="深入淺出 Copilot Subagent：擺脫 Context 泥沼"><meta itemprop=description content="在這篇文章中，我想探討以下幾個問題：
+為什麼我們需要 Subagent？ 在真實的開發流程中如何應用？ 它與 Skill 有什麼本質上的區別？ 為什麼需要 Subagent？ 在 2025 年 10 月，GitHub Copilot for VS Code 將 “chatmodes” 升級為 “agents”，並帶來了強大的 “subagent” 能力。這讓主 Agent 能夠啟動「另一個擁有乾淨 Context、甚至使用不同模型的獨立 Agent」。
+單一 Agent 最大的痛點在於：當對話時間拉長，Context 累積過多雜訊後，回應品質會顯著下降（變笨）。
+Subagent 的出現解決了這個問題：
+乾淨的上下文 (Clean Context)：每次任務都從零開始，避免歷史包袱。 非阻塞執行 (Non-blocking)：多工處理時，Subagent 在背景平行運作，不會卡住你的主對話框。 計畫委派 (Delegation)：在 Plan Mode 下，主 Agent 可以將拆解後的步驟交由 Subagent 執行。 實際應用 (Real Dev Scenario) 1. 設定 (Setup) 首先，我們需要在 .github/agents/ 目錄下定義 Agent：
+Scope：設定是個人專用還是專案共享。 Description：這是關鍵。你需要清楚描述這個 Agent 能做什麼 以及 何時該用。（例如：當你需要修改 C# 程式碼時… 請使用此 Agent）。 Tools：定義這個 Subagent 可調用的指令、MCP 或 Skill。 2. 執行 (Run) 啟動方式相當靈活："><meta itemprop=datePublished content="2026-01-10T08:14:42+08:00"><meta itemprop=dateModified content="2026-01-10T08:14:42+08:00"><meta itemprop=wordCount content="174"><meta name=twitter:card content="summary"><meta name=twitter:title content="深入淺出 Copilot Subagent：擺脫 Context 泥沼"><meta name=twitter:description content="在這篇文章中，我想探討以下幾個問題：
+為什麼我們需要 Subagent？ 在真實的開發流程中如何應用？ 它與 Skill 有什麼本質上的區別？ 為什麼需要 Subagent？ 在 2025 年 10 月，GitHub Copilot for VS Code 將 “chatmodes” 升級為 “agents”，並帶來了強大的 “subagent” 能力。這讓主 Agent 能夠啟動「另一個擁有乾淨 Context、甚至使用不同模型的獨立 Agent」。
+單一 Agent 最大的痛點在於：當對話時間拉長，Context 累積過多雜訊後，回應品質會顯著下降（變笨）。
+Subagent 的出現解決了這個問題：
+乾淨的上下文 (Clean Context)：每次任務都從零開始，避免歷史包袱。 非阻塞執行 (Non-blocking)：多工處理時，Subagent 在背景平行運作，不會卡住你的主對話框。 計畫委派 (Delegation)：在 Plan Mode 下，主 Agent 可以將拆解後的步驟交由 Subagent 執行。 實際應用 (Real Dev Scenario) 1. 設定 (Setup) 首先，我們需要在 .github/agents/ 目錄下定義 Agent：
+Scope：設定是個人專用還是專案共享。 Description：這是關鍵。你需要清楚描述這個 Agent 能做什麼 以及 何時該用。（例如：當你需要修改 C# 程式碼時… 請使用此 Agent）。 Tools：定義這個 Subagent 可調用的指令、MCP 或 Skill。 2. 執行 (Run) 啟動方式相當靈活："></head><body class="ma0 avenir bg-near-white production"><header><div class=bg-black><nav class="pv3 ph3 ph4-ns" role=navigation><div class="flex-l center items-center justify-between"><a href=/murmursite/ class="f3 fw2 hover-white white-90 dib no-underline">Murmur</a><div class="flex-l items-center"><div class=ananke-socials></div></div></div></nav></div></header><main class=pb7 role=main><article class="flex-l mw7 center ph3 flex-wrap justify-between"><header class="mt4 w-100"><aside class="instapaper_ignoref b helvetica tracked ttu">Posts</aside><div id=sharing class="mt3 ananke-socials"></div><h1 class="f1 athelas mt3 mb1">深入淺出 Copilot Subagent：擺脫 Context 泥沼</h1><time class="f6 mv4 dib tracked" datetime=2026-01-10T08:14:42+08:00>January 10, 2026</time></header><div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><p>在這篇文章中，我想探討以下幾個問題：</p><ul><li>為什麼我們需要 Subagent？</li><li>在真實的開發流程中如何應用？</li><li>它與 Skill 有什麼本質上的區別？</li></ul><h2 id=為什麼需要-subagent>為什麼需要 Subagent？</h2><p>在 2025 年 10 月，GitHub Copilot for VS Code 將 &ldquo;chatmodes&rdquo; 升級為 &ldquo;agents&rdquo;，並帶來了強大的 &ldquo;subagent&rdquo; 能力。這讓主 Agent 能夠啟動「另一個擁有乾淨 Context、甚至使用不同模型的獨立 Agent」。</p><p>單一 Agent 最大的痛點在於：<strong>當對話時間拉長，Context 累積過多雜訊後，回應品質會顯著下降（變笨）</strong>。</p><p>Subagent 的出現解決了這個問題：</p><ol><li><strong>乾淨的上下文 (Clean Context)</strong>：每次任務都從零開始，避免歷史包袱。</li><li><strong>非阻塞執行 (Non-blocking)</strong>：多工處理時，Subagent 在背景平行運作，不會卡住你的主對話框。</li><li><strong>計畫委派 (Delegation)</strong>：在 Plan Mode 下，主 Agent 可以將拆解後的步驟交由 Subagent 執行。</li></ol><h2 id=實際應用-real-dev-scenario>實際應用 (Real Dev Scenario)</h2><h3 id=1-設定-setup>1. 設定 (Setup)</h3><p>首先，我們需要在 <code>.github/agents/</code> 目錄下定義 Agent：</p><ul><li><strong>Scope</strong>：設定是個人專用還是專案共享。</li><li><strong>Description</strong>：這是關鍵。你需要清楚描述這個 Agent <strong>能做什麼</strong> 以及 <strong>何時該用</strong>。（例如：<em>當</em>你需要修改 C# 程式碼時&mldr; <em>請使用</em>此 Agent）。</li><li><strong>Tools</strong>：定義這個 Subagent 可調用的指令、MCP 或 Skill。</li></ul><h3 id=2-執行-run>2. 執行 (Run)</h3><p>啟動方式相當靈活：</p><ul><li><strong>明確執行</strong>：透過 <code>$runSubagent</code> 指令手動觸發。</li><li><strong>隱式執行</strong>：讓主 Agent 根據對話內容，智慧判斷是否呼叫 Subagent。</li><li><strong>平行處理</strong>：<blockquote><p>&ldquo;Research the authentication, database, and API modules in parallel using separate subagents&rdquo;
+(使用不同的 Subagents 同時研究驗證、資料庫和 API 模組)</p></blockquote></li><li><strong>串接協作</strong>：<blockquote><p>&ldquo;Use the code-reviewer subagent to find performance issues, then use the optimizer subagent to fix them&rdquo;
+(先用代碼審查 Agent 找出問題，再用優化 Agent 進行修復)</p></blockquote></li></ul><h3 id=3-工程風險-the-risk-in-engineering>3. 工程風險 (The Risk in Engineering)</h3><p><strong>遷移成本 (Migration)</strong>
+如果多個 Subagent 依賴相同的專案業務邏輯，一旦業務邏輯變更，我們就必須 Copy/Paste 到每個 Agent Profile 中進行修正。這種重複性維護違反了 DRY 原則，是未來需要解決的挑戰。</p><h2 id=與-skills-的比較>與 Skills 的比較</h2><p>很多人會混淆 Subagent 和 Skill。簡單來說：</p><ul><li><strong>Skill</strong>：利用「漸進式揭露 (Progressive Disclosure)」來縮減 Context。它的核心在於將常用的指令抽象化，封裝成工具。</li><li><strong>Subagent</strong>：則是提供一個全新的執行環境與思考模型。</li></ul><h2 id=參考資料-reference>參考資料 (Reference)</h2><ul><li><a href=https://github.blog/changelog/2025-11-18-isolated-subagents-for-jetbrains-eclipse-and-xcode-now-in-public-preview/>copilot doc</a></li><li><a href="https://www.youtube.com/watch?v=xeoWgfkxADI">no more agents, the future is skills</a></li><li><a href=https://code.claude.com/docs/en/sub-agents>Claude Code - Create custom subagents</a></li><li><a href=https://github.com/ChrisWiles/claude-code-showcase/tree/main/.claude/agents>Claude-code-showcase</a></li></ul><ul class=pa0></ul><div class="mt6 instapaper_ignoref"></div></div></article></main><footer class="bg-black bottom-0 w-100 pa3" role=contentinfo><div class="flex justify-between"><a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href=https://botider.github.io/murmursite/>&copy; Murmur 2026</a><div><div class=ananke-socials></div></div></div></footer></body></html>
