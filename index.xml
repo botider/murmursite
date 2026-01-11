@@ -1,25 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Murmur</title><link>https://botider.github.io/murmursite/</link><description>Recent content on Murmur</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 10 Jan 2026 08:14:42 +0800</lastBuildDate><atom:link href="https://botider.github.io/murmursite/index.xml" rel="self" type="application/rss+xml"/><item><title>深入淺出 Copilot Subagent：擺脫 Context 泥沼</title><link>https://botider.github.io/murmursite/post/20260110/</link><pubDate>Sat, 10 Jan 2026 08:14:42 +0800</pubDate><guid>https://botider.github.io/murmursite/post/20260110/</guid><description>&lt;p&gt;在這篇文章中，我想探討以下幾個問題：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;為什麼我們需要 Subagent？&lt;/li&gt;
-&lt;li&gt;在真實的開發流程中如何應用？&lt;/li&gt;
-&lt;li&gt;它與 Skill 有什麼本質上的區別？&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="為什麼需要-subagent"&gt;為什麼需要 Subagent？&lt;/h2&gt;
-&lt;p&gt;在 2025 年 10 月，GitHub Copilot for VS Code 將 &amp;ldquo;chatmodes&amp;rdquo; 升級為 &amp;ldquo;agents&amp;rdquo;，並帶來了強大的 &amp;ldquo;subagent&amp;rdquo; 能力。這讓主 Agent 能夠啟動「另一個擁有乾淨 Context、甚至使用不同模型的獨立 Agent」。&lt;/p&gt;
-&lt;p&gt;單一 Agent 最大的痛點在於：&lt;strong&gt;當對話時間拉長，Context 累積過多雜訊後，回應品質會顯著下降（變笨）&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;Subagent 的出現解決了這個問題：&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Murmur</title><link>https://botider.github.io/murmursite/</link><description>Recent content on Murmur</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 10 Jan 2026 08:14:42 +0800</lastBuildDate><atom:link href="https://botider.github.io/murmursite/index.xml" rel="self" type="application/rss+xml"/><item><title>深入淺出 Copilot Subagent：擺脫 Context 泥沼與微服務化的既視感</title><link>https://botider.github.io/murmursite/post/20260110/</link><pubDate>Sat, 10 Jan 2026 08:14:42 +0800</pubDate><guid>https://botider.github.io/murmursite/post/20260110/</guid><description>&lt;p&gt;談談 GitHub Copilot Subagent。&lt;/p&gt;
+&lt;p&gt;這其實已經是 2025 年底的事了，應該不少人都已經在用了，但我還是稍微前情提要一下。
+在 2025 年 10 月左右，GitHub Copilot for VS Code把原本的 &amp;ldquo;chatmodes&amp;rdquo; 升級成了 &amp;ldquo;agents&amp;rdquo;，並且開放了所謂的 &amp;ldquo;subagent&amp;rdquo; 能力。這功能簡單來說，就是讓你的主 Agent 可以再叫出另一個獨立的 Agent 來幫忙做事，而且這個新的 Agent 擁有乾淨的 Context，甚至可以使用不同的模型。&lt;/p&gt;
+&lt;p&gt;乍聽之下好像很厲害，但也讓人覺得有點困惑：我們原本不是追求一個「全知全能」的 AI 助手嗎？怎麼現在反而要把他拆成好幾個小助手？這走回頭路的感覺，看起來是件滿弔詭的事情。&lt;/p&gt;
+&lt;p&gt;但這並不是什麼新鮮事，在軟體架構的發展史上其實就這樣了，甚至對有些架構師來說這劇本眼熟到不行。
+要解釋這個說法，我們要從頭開始看，先回答：「為什麼我們需要 Subagent」&lt;/p&gt;
+&lt;p&gt;這一切的問題核心，都在於那個老掉牙的「Context 泥沼」。
+不管 LLM 的 Context Window 從 32k 變成 128k 甚至 12800k，單一 Agent 最大的痛點始終沒變：&lt;strong&gt;當對話時間拉長，Context 累積過多雜訊後，回應品質會顯著下降（變笨）&lt;/strong&gt;。這就像是你把整本 Wiki 丟給他，然後問他這頁第三行的錯字在哪，他反而會迷失在資訊海裡。&lt;/p&gt;
+&lt;p&gt;Subagent 的出現基本上就是為了解決這個問題，它的核心價值有三點：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;乾淨的上下文 (Clean Context)&lt;/strong&gt;：每次任務都從零開始，避免歷史包袱。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;非阻塞執行 (Non-blocking)&lt;/strong&gt;：多工處理時，Subagent 在背景平行運作，不會卡住你的主對話框。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;計畫委派 (Delegation)&lt;/strong&gt;：在 Plan Mode 下，主 Agent 可以將拆解後的步驟交由 Subagent 執行。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;乾淨的上下文 (Clean Context)&lt;/strong&gt;：每次任務都從零開始，沒有前面的對話包袱。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;非阻塞執行 (Non-blocking)&lt;/strong&gt;：就像是非同步函式 (Async)，Subagent 在背景跑，你可以繼續跟主 Agent 聊天。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;計畫委派 (Delegation)&lt;/strong&gt;：主 Agent 變成專案經理，負責拆票，Subagent 負責解票。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id="實際應用-real-dev-scenario"&gt;實際應用 (Real Dev Scenario)&lt;/h2&gt;
-&lt;h3 id="1-設定-setup"&gt;1. 設定 (Setup)&lt;/h3&gt;
-&lt;p&gt;首先，我們需要在 &lt;code&gt;.github/agents/&lt;/code&gt; 目錄下定義 Agent：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Scope&lt;/strong&gt;：設定是個人專用還是專案共享。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Description&lt;/strong&gt;：這是關鍵。你需要清楚描述這個 Agent &lt;strong&gt;能做什麼&lt;/strong&gt; 以及 &lt;strong&gt;何時該用&lt;/strong&gt;。（例如：&lt;em&gt;當&lt;/em&gt;你需要修改 C# 程式碼時&amp;hellip; &lt;em&gt;請使用&lt;/em&gt;此 Agent）。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Tools&lt;/strong&gt;：定義這個 Subagent 可調用的指令、MCP 或 Skill。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="2-執行-run"&gt;2. 執行 (Run)&lt;/h3&gt;
-&lt;p&gt;啟動方式相當靈活：&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;知道「為什麼」之後，我們來看看「怎麼做」。
+在技術實作上，我們需要在 .github/agents/ 目錄下定義 Agent。你需要設定 Scope（誰能用）、Description（這隻 Agent 能做什麼）、以及 Tools（他能用什麼工具）。
+這是不是聽起來很耳熟？
+這不就是微服務 (Microservices) 的服務定義檔嗎？&lt;/p&gt;</description></item></channel></rss>
