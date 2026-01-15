@@ -40,21 +40,4 @@
 也就是說，平台採取開放但是嚴格監管的方式，試圖在AI與玩家之間取得平衡&lt;/p&gt;
 &lt;p&gt;玩家多樣性本來就很正常，為何Steam要針對含有AI產生內容的遊戲做監控？
 因為生成式AI不單單只是一種新的創作方式，也引發版權爭議、玩家信任危機，AI也涉及「藝術家失業」、「創意剽竊」的道德倫理議題，因此玩家抵制的聲浪更大&lt;/p&gt;
-&lt;p&gt;平台的公告解釋了創新與責任密不可分，他們的做法是開放AI遊戲，但是設立舉報機制，維持平台中立的形象，同時避免無人監管可能導致法律或聲譽損害&lt;/p&gt;</description></item><item><title>深入淺出 Copilot Subagent：擺脫 Context 泥沼與微服務化的既視感</title><link>https://botider.github.io/murmursite/post/2026/0110/</link><pubDate>Sat, 10 Jan 2026 08:14:42 +0800</pubDate><guid>https://botider.github.io/murmursite/post/2026/0110/</guid><description>&lt;p&gt;談談 GitHub Copilot Subagent。&lt;/p&gt;
-&lt;p&gt;這其實已經是 2025 年底的事了，應該不少人都已經在用了，但我還是稍微前情提要一下。
-在 2025 年 10 月左右，GitHub Copilot for VS Code把原本的 &amp;ldquo;chatmodes&amp;rdquo; 升級成了 &amp;ldquo;agents&amp;rdquo;，並且開放了所謂的 &amp;ldquo;subagent&amp;rdquo; 能力。這功能簡單來說，就是讓你的主 Agent 可以再叫出另一個獨立的 Agent 來幫忙做事，而且這個新的 Agent 擁有乾淨的 Context，甚至可以使用不同的模型。&lt;/p&gt;
-&lt;p&gt;乍聽之下好像很厲害，但也讓人覺得有點困惑：我們原本不是追求一個「全知全能」的 AI 助手嗎？怎麼現在反而要把他拆成好幾個小助手？這走回頭路的感覺，看起來是件滿弔詭的事情。&lt;/p&gt;
-&lt;p&gt;但這並不是什麼新鮮事，在軟體架構的發展史上其實就這樣了，甚至對有些架構師來說這劇本眼熟到不行。
-要解釋這個說法，我們要從頭開始看，先回答：「為什麼我們需要 Subagent」&lt;/p&gt;
-&lt;p&gt;這一切的問題核心，都在於那個老掉牙的「Context 泥沼」。
-不管 LLM 的 Context Window 從 32k 變成 128k 甚至 12800k，單一 Agent 最大的痛點始終沒變：&lt;strong&gt;當對話時間拉長，Context 累積過多雜訊後，回應品質會顯著下降（變笨）&lt;/strong&gt;。這就像是你把整本 Wiki 丟給他，然後問他這頁第三行的錯字在哪，他反而會迷失在資訊海裡。&lt;/p&gt;
-&lt;p&gt;Subagent 的出現基本上就是為了解決這個問題，它的核心價值有三點：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;乾淨的上下文 (Clean Context)&lt;/strong&gt;：每次任務都從零開始，沒有前面的對話包袱。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;非阻塞執行 (Non-blocking)&lt;/strong&gt;：就像是非同步函式 (Async)，Subagent 在背景跑，你可以繼續跟主 Agent 聊天。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;計畫委派 (Delegation)&lt;/strong&gt;：主 Agent 變成專案經理，負責拆票，Subagent 負責解票。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;知道「為什麼」之後，我們來看看「怎麼做」。
-在技術實作上，我們需要在 .github/agents/ 目錄下定義 Agent。你需要設定 Scope（誰能用）、Description（這隻 Agent 能做什麼）、以及 Tools（他能用什麼工具）。
-這是不是聽起來很耳熟？
-這不就是微服務 (Microservices) 的服務定義檔嗎？&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;平台的公告解釋了創新與責任密不可分，他們的做法是開放AI遊戲，但是設立舉報機制，維持平台中立的形象，同時避免無人監管可能導致法律或聲譽損害&lt;/p&gt;</description></item></channel></rss>
