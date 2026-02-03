@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html
+  lang="en-us"
+  dir="ltr"
+>
+  <head><script src="/murmursite/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=murmursite/livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+  AI Coding agent 101: 開發者的升級指南 | En_Murmur
+</title>
+
+
+
+<link rel="canonical" href="http://localhost:1313/murmursite/posts/ai_coding_101/" />
+
+
+<meta property="og:title" content="AI Coding agent 101: 開發者的升級指南" />
+<meta property="og:description" content="動機
+我花了好幾個月在 VS Code 使用 GitHub Copilot，卻常聽到 Claude Code、OpenAI Codex、OpenCode 等新名詞。這些 AI coding agent 都一樣嗎？有什麼本質差異？這篇文章用最簡單的比喻，幫助你快速理解「AI 編程助手」的核心概念、產品定位，以及各家特色。
+這篇文章適合
+
+想了解 Copilot、Claude Code、OpenCode、Cursor 差異的開發者
+對 AI coding agent 背後原理、架構有興趣的技術愛好者
+希望用簡單語言解釋 AI 助手給同事或朋友聽的人
+
+
+傳統的寫程式體驗 be like&hellip;
+在沒有 Claude Code 這類 agent 產品時，單純用 ChatGPT 寫程式是什麼體驗？
+在 Claude Code、Copilot 等「AI coding agent」出現前，許多開發者會用 ChatGPT（或一般 LLM 聊天介面）協助寫程式。這種流程大致如下：
+
+遇到需求或 bug，把問題描述貼到 ChatGPT，請它產生程式碼
+手動複製貼上到本地 IDE，自己整合到專案
+如果有錯誤或 context 不足，要自己再補充細節、反覆溝通
+ChatGPT 不會主動讀取你的專案結構、檔案內容，無法自動追蹤 import 或跨檔案邏輯
+測試、debug 仍需自己執行，AI 不會自動驗證結果
+
+這種「AI 聊天輔助」模式，雖然能加速查詢與產生範例，但：
+
+需要大量人工來回溝通、搬運程式碼
+AI 無法真正理解你的專案全貌
+缺乏自動化的 context 管理與工具整合
+
+而像 Claude Code 這類 agent 產品，則能直接存取專案檔案、主動規劃 context、甚至自動執行測試與修正，大幅減少人工搬運與溝通成本，讓 AI 真正成為「主動型協作者」。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/murmursite/posts/ai_coding_101/" />
+<meta property="og:site_name" content="En_Murmur" /><meta property="og:image" content="http://localhost:1313/murmursite/images/og_image.webp" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI Coding agent 101: 開發者的升級指南" />
+<meta name="twitter:description" content="動機
+我花了好幾個月在 VS Code 使用 GitHub Copilot，卻常聽到 Claude Code、OpenAI Codex、OpenCode 等新名詞。這些 AI coding agent 都一樣嗎？有什麼本質差異？這篇文章用最簡單的比喻，幫助你快速理解「AI 編程助手」的核心概念、產品定位，以及各家特色。
+這篇文章適合
+
+想了解 Copilot、Claude Code、OpenCode、Cursor 差異的開發者
+對 AI coding agent 背後原理、架構有興趣的技術愛好者
+希望用簡單語言解釋 AI 助手給同事或朋友聽的人
+
+
+傳統的寫程式體驗 be like&hellip;
+在沒有 Claude Code 這類 agent 產品時，單純用 ChatGPT 寫程式是什麼體驗？
+在 Claude Code、Copilot 等「AI coding agent」出現前，許多開發者會用 ChatGPT（或一般 LLM 聊天介面）協助寫程式。這種流程大致如下：
+
+遇到需求或 bug，把問題描述貼到 ChatGPT，請它產生程式碼
+手動複製貼上到本地 IDE，自己整合到專案
+如果有錯誤或 context 不足，要自己再補充細節、反覆溝通
+ChatGPT 不會主動讀取你的專案結構、檔案內容，無法自動追蹤 import 或跨檔案邏輯
+測試、debug 仍需自己執行，AI 不會自動驗證結果
+
+這種「AI 聊天輔助」模式，雖然能加速查詢與產生範例，但：
+
+需要大量人工來回溝通、搬運程式碼
+AI 無法真正理解你的專案全貌
+缺乏自動化的 context 管理與工具整合
+
+而像 Claude Code 這類 agent 產品，則能直接存取專案檔案、主動規劃 context、甚至自動執行測試與修正，大幅減少人工搬運與溝通成本，讓 AI 真正成為「主動型協作者」。" /><meta name="twitter:image" content="http://localhost:1313/murmursite/images/og_image.webp" />
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Coding agent 101: 開發者的升級指南",
+  "url": "http:\/\/localhost:1313\/murmursite\/posts\/ai_coding_101\/",
+  "datePublished": "2026-01-28T08:14:42\u002b08:00",
+  "dateModified": "2026-01-28T08:14:42\u002b08:00",
+  "author": {
+    "@type": "Person",
+    "name": "botider"
+  }
+}
+</script>
+
+
+
+<link rel="apple-touch-icon" sizes="57x57" href="/murmursite/favicon_io/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/murmursite/favicon_io/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/murmursite/favicon_io/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/murmursite/favicon_io/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/murmursite/favicon_io/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/murmursite/favicon_io/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/murmursite/favicon_io/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/murmursite/favicon_io/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/murmursite/favicon_io/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/murmursite/favicon_io/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/murmursite/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/murmursite/favicon_io/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/murmursite/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="/murmursite/favicon_io/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/murmursite/favicon_io/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+    <link rel="stylesheet" href="/murmursite/css/main.css">
+    <link rel="stylesheet" href="/murmursite/css/custom.css">
+
+
+
+
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <header><nav class="path-nav">
+  <ol>
+    
+  
+    
+      
+  
+  <li>
+    /
+    <a href="/murmursite/">En_Murmur</a>
+    /
+  </li>
+
+    
+  
+  <li class="current">
+    
+    <a href="/murmursite/posts/ai_coding_101/">AI Coding agent 101: 開發者的升級指南</a>
+    
+  </li>
+
+  </ol>
+</nav>
+
+
+
+</header>
+    <main id="main-content">
+  <h1>AI Coding agent 101: 開發者的升級指南</h1>
+  
+
+
+  
+  
+  
+  
+    <nav class="toc">
+      <strong>Table of contents</strong>
+      <div class="toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#動機">動機</a></li>
+    <li><a href="#傳統的寫程式體驗-be-like">傳統的寫程式體驗 be like&hellip;</a></li>
+    <li><a href="#如何升級寫程式的體驗">如何升級寫程式的體驗</a></li>
+    <li><a href="#除了不需要複製貼上-agent-coding-tool還有沒有其他好處">除了不需要複製貼上, Agent Coding Tool還有沒有其他好處？</a></li>
+    <li><a href="#claude-code-和-copilot-用起來的體驗會有差異嗎">Claude Code 和 Copilot 用起來的體驗會有差異嗎？</a></li>
+    <li><a href="#選用了agent-coding-tool是不是就算是升級完畢了">選用了Agent Coding Tool是不是就算是升級完畢了</a></li>
+    <li><a href="#所以如何繼續升級體驗">所以如何繼續升級體驗?</a></li>
+    <li><a href="#再繼續升級">再&hellip;繼續升級？</a></li>
+    <li><a href="#聽起來升級很簡單">聽起來升級很簡單？</a></li>
+    <li><a href="#繼續升級1">繼續升級1！</a></li>
+    <li><a href="#繼續升級2">繼續升級2！</a></li>
+    <li><a href="#結語">結語</a></li>
+  </ul>
+</nav>
+      </div>
+    </nav>
+  
+
+  
+  <h2 id="動機">動機</h2>
+<p>我花了好幾個月在 VS Code 使用 GitHub Copilot，卻常聽到 Claude Code、OpenAI Codex、OpenCode 等新名詞。這些 AI coding agent 都一樣嗎？有什麼本質差異？這篇文章用最簡單的比喻，幫助你快速理解「AI 編程助手」的核心概念、產品定位，以及各家特色。</p>
+<p>這篇文章適合</p>
+<ul>
+<li>想了解 Copilot、Claude Code、OpenCode、Cursor 差異的開發者</li>
+<li>對 AI coding agent 背後原理、架構有興趣的技術愛好者</li>
+<li>希望用簡單語言解釋 AI 助手給同事或朋友聽的人</li>
+</ul>
+<hr>
+<h2 id="傳統的寫程式體驗-be-like">傳統的寫程式體驗 be like&hellip;</h2>
+<p>在沒有 Claude Code 這類 agent 產品時，單純用 ChatGPT 寫程式是什麼體驗？</p>
+<p>在 Claude Code、Copilot 等「AI coding agent」出現前，許多開發者會用 ChatGPT（或一般 LLM 聊天介面）協助寫程式。這種流程大致如下：</p>
+<ul>
+<li>遇到需求或 bug，把問題描述貼到 ChatGPT，請它產生程式碼</li>
+<li>手動複製貼上到本地 IDE，自己整合到專案</li>
+<li>如果有錯誤或 context 不足，要自己再補充細節、反覆溝通</li>
+<li>ChatGPT 不會主動讀取你的專案結構、檔案內容，無法自動追蹤 import 或跨檔案邏輯</li>
+<li>測試、debug 仍需自己執行，AI 不會自動驗證結果</li>
+</ul>
+<p>這種「AI 聊天輔助」模式，雖然能加速查詢與產生範例，但：</p>
+<ul>
+<li>需要大量人工來回溝通、搬運程式碼</li>
+<li>AI 無法真正理解你的專案全貌</li>
+<li>缺乏自動化的 context 管理與工具整合</li>
+</ul>
+<p>而像 Claude Code 這類 agent 產品，則能直接存取專案檔案、主動規劃 context、甚至自動執行測試與修正，大幅減少人工搬運與溝通成本，讓 AI 真正成為「主動型協作者」。</p>
+<hr>
+<h2 id="如何升級寫程式的體驗">如何升級寫程式的體驗</h2>
+<p>很簡單, 如果你已經會用VSCode寫程式
+VSCode其實都支援Copilot和Claude Code,
+兩者都是透過VSCode Extension安裝, 但是Claude Code還要額外安裝他的CLI, 所以入門門檻稍微高了一點
+新手我覺得使用Copilot體驗會簡單一點</p>
+<p>這篇文章重點是講Agent Coding Tool的觀念, 所以安裝工具的細節就不贅述</p>
+<p>你只需要知道, 安裝了Copilot以後，VSCode裡面會Copilot對話框 (就像最廣為人知的ChatGPT的介面)
+你只要下命令給Copilot就好,
+例如「請用Python幫我寫一個Hello World」
+Copilot會自己編輯檔案, 你再也不需要複製貼上了</p>
+<h2 id="除了不需要複製貼上-agent-coding-tool還有沒有其他好處">除了不需要複製貼上, Agent Coding Tool還有沒有其他好處？</h2>
+<p>AI coding agent 的核心工作流程（Agentic Loop）：</p>
+<p>無論是 Claude Code、Copilot 或其他先進 AI coding agent，本質上都遵循一個「agentic loop」：</p>
+<ol>
+<li><strong>收集脈絡（Gather Context）</strong>：
+<ul>
+<li>讀取你的需求、專案檔案、錯誤訊息、測試結果等，理解目前狀況。</li>
+</ul>
+</li>
+<li><strong>採取行動（Take Action）</strong>：
+<ul>
+<li>根據理解，選擇適合的工具（如搜尋、編輯檔案、執行指令、查文件），逐步執行任務。</li>
+</ul>
+</li>
+<li><strong>驗證結果（Verify Results）</strong>：
+<ul>
+<li>檢查行動後的結果（如測試是否通過、錯誤是否消失），必要時重複調整，直到達成目標。</li>
+</ul>
+</li>
+</ol>
+<p>這三個階段會不斷循環，AI 會根據每次獲得的新資訊自我修正，直到任務完成。你可以隨時介入、補充脈絡或調整方向。</p>
+<p>這就是所謂的「agentic loop」——AI 不只是單次回答，而是像一位能主動規劃、執行、驗證的協作夥伴。</p>
+<p>我覺得有個專案很有趣, 他將Agent工作的流程視覺化</p>
+<ul>
+<li><a href="https://github.com/Nearcyan/vibecraft">vibecraft 專案</a>
+這對理解抽象的Agent有些幫助</li>
+</ul>
+<hr>
+<h2 id="claude-code-和-copilot-用起來的體驗會有差異嗎">Claude Code 和 Copilot 用起來的體驗會有差異嗎？</h2>
+<p>當然會, 不然他們怎麼賺錢？</p>
+<p>打個比方, Claude Code 和 Copilot就像是兩間工廠,
+兩間工廠都是依據你輸入的文字訊息, 依照他們工廠內部的設定最終生產出讓你滿意的結果
+但是兩間工廠的管理方式不同</p>
+<p>想像兩間工廠內各自擁有不同的工匠,
+雖然工匠能力素質一樣, 但是工匠看到的, 除了你的輸入文字, 還包含了工廠的內部工作指南</p>
+<p>舉例來說Claude Code的工廠內部工作指南可能會是：在交付結果之前, 先自我審查是否符合要求, 並自行修正錯誤
+而Copilot的工作指南可能是: 給予最符合使用者意圖的結果</p>
+<p>而這個「內部工作指南」, 其實就是 System Prompt, 也就是Agent 內部的一段文字, 引導工匠(LLM Model)的思考方式最後產生結果
+所以一個簡化的工廠工作流程是：
+使用者輸入請求(user input) -&gt; 工廠附加內部工作指南 (system prompt + user input) -&gt; 工匠產生結果 (LLM Model)</p>
+<p>即使你在Claude Code 和 Copilot都選用Claude Opus模型, 結果還是會不同, 體驗也不同</p>
+<h2 id="選用了agent-coding-tool是不是就算是升級完畢了">選用了Agent Coding Tool是不是就算是升級完畢了</h2>
+<p>遠遠不是</p>
+<p>多用幾次, 你可能會發現實際的工作流程可能是:
+想要寫新的Code -&gt; 輸入文字請Agent做完 -&gt; Agent做出不理想的東西 -&gt; 發現還要給他更多指示 -&gt; 思考如何給予正確的指示 -&gt; 重新試試看你的新指令 -&gt; Agent又做錯了 -&gt; &hellip;</p>
+<p>這是工廠的問題嗎? 是</p>
+<p>這可以修正嗎？是</p>
+<p>想像你花錢買了這間工廠的產能, 但是工廠其實可以針對你的需求進行客製化,
+而這個客製化程度, 可以是只有在你目前做的專案, 也可以是跨專案, 針對你個人打造的設定</p>
+<h2 id="所以如何繼續升級體驗">所以如何繼續升級體驗?</h2>
+<p>前面提到, 既有的工作流程可能會遇到Agent產出的結果不符合你的期待</p>
+<p>還記得我們之前提到工廠內部有「工作指南」嗎？
+其實你也可以自己設定自己想要的工作指南
+當客製化你自己的工作指南, 會讓Agent更懂你的需求</p>
+<p>舉例來說, 我現在的Coding專案是Python語言, 我可以在工作指南內放入Python的Writing Rule,
+我也可以寫份指南, 要求Agent遵守TDD(Test Driven Design)的開發原則</p>
+<p>這份工作指南的格式, 在Claude Code和在Copilot是通用的, 只是兩間工廠規定工作指南要放在他們規定的資料夾下, 並且符合特定命名格式才能正確運作</p>
+<h2 id="再繼續升級">再&hellip;繼續升級？</h2>
+<p>還有可以優化的地方</p>
+<p>舉例來說, 當你被交付一項工作, 例如要實作一個UI
+通常你拿到的就是一個Figma網址, 裡面有設計師做好的UI元件</p>
+<p>傳統工作流程是人工去檢視Figma的元件尺寸規格, 手動寫代碼
+因為這些Figma元件規格是很難透過自然語言去描述</p>
+<p>其實你可以讓Agent自動處理Figma的事情,
+透過安裝Figma客製化工具, 你其實就讓Agent具備了分析Figma的能力,
+而你需要做的事情就是將Figma文件的網址貼到Agent對話框, 並且給予一些指示,
+Agent就可以開始實作Figma的UI</p>
+<p>上面這個客製化工具, 其實就是叫做MCP (Model Context Protocal)
+這是一種通用的協定, 有興趣的可以自行搜尋</p>
+<h2 id="聽起來升級很簡單">聽起來升級很簡單？</h2>
+<p>如果你以為升級就是不斷地堆疊「工具」和「工作指南」,這樣是不行的</p>
+<p>想像每個工匠(LLM Model)都有自己的工作台
+工作台有大小限制, 如果你的輸入文字訊息太大, 工廠內部指南, 以及各種客製化工具太多,
+工匠只能將工作台能容納的東西整理好, 才開始工作, 滿出來的東西則會被丟棄
+因此你沒辦法一直堆疊工具</p>
+<p>而這個工作台大小限制, 就是Context Window.</p>
+<p>事實上, 除了安裝的客製化工具,
+你在跟Agent一來一回的對話過程, 對話紀錄也會被視為放在工作台上的物品, 是會佔據Context Window的</p>
+<h2 id="繼續升級1">繼續升級1！</h2>
+<p>所以給你另外兩個客製化選項: Skill / SubAgent</p>
+<p>Skill也是一個很大的文件, 但是只有Skill的描述會佔據工作桌, Skill的細部內容則是工匠認為需要用到這個技能時, 才會將Skill的細節放到工作台上</p>
+<p>如果說 MCP 是工匠手邊實體的「工具箱」（例如：扳手、螺絲起子），那麼 Skill 就是工匠腦海中**「如何使用這些工具來完成特定複雜任務的知識」**。</p>
+<p>具體來說，Skill 的特性包括：</p>
+<p>自動化的邏輯流： 雖然工匠（模型）很聰明，但有時候面對複雜任務（例如：部署到雲端、寫單元測試）會漏掉步驟。Skill 就像是一份已經驗證過的 SOP 檢查表，確保工匠每一步都走在正確的軌道上。</p>
+<p>能力的擴充包： 有些 Skill 是工匠本來不會的（或者不擅長的），透過載入特定 Skill，工匠就像瞬間考取了「Git 版本控制證照」或「React 性能優化證照」，處理特定領域任務時會更精準。</p>
+<p>具體的例子：</p>
+<p>GitHub Skill： 讓工匠知道「如何正確地發 PR、處理衝突」。</p>
+<p>Test Skill： 讓工匠知道「寫完 Code 後，必須主動去找測試目錄並運行 npm test」。</p>
+<h2 id="繼續升級2">繼續升級2！</h2>
+<p>你在使用Copilot時, 是否有發現不同的工匠(模型)會有不同的計費方式
+通常比較貴的模型, 產出品質都比較穩定</p>
+<p>但是身為精打細算的老闆, 你有沒有想過合理的節省成本？
+SubAgent就是你需要了解的部分</p>
+<p>想像SubAgent就像是工讀生,
+你可以將一些比較輕鬆簡單的任務交派給工讀生做, 例如摘要這段內容或回答簡單問題
+就不用花大錢請專業工匠做一些廉價的工作</p>
+<p>SubAgent其實也可以不只是工讀生, 你可以想像他是臨時調派來的工匠群
+還記得我們提到的工作台(Context Window)限制嗎？
+當遇到超大型任務時, 一個工匠的工作桌可能會無法消化這個任務, 導致產出結果品質不良</p>
+<p>SubAgent的特性是, 每個工匠都會分配到各自的工作台
+因為是另一個工作台, 可以容納的工作內容就比較多了
+你要做的事情就是授權,
+指令範例： 「這是一個大型重構任務，我需要將專案中的所有 API 從 REST 改為 GraphQL。請你：</p>
+<p>先分析影響範圍，並列出需要執行的子任務清單。</p>
+<p>啟動 Subagents（或子程序） 並行處理不同目錄下的檔案轉換。</p>
+<p>每個子任務完成後需獨立運行測試。</p>
+<p>最後由你匯總並回報進度。」</p>
+<p>這部分就需要自行實驗體會了</p>
+<h2 id="結語">結語</h2>
+<p>來複習一下上面說的觀念</p>
+<ul>
+<li><strong>產品</strong>：工廠本身，決定工作環境與流程, 例如Claude Code / Copilot</li>
+<li><strong>模型</strong>：工廠裡的工匠，負責實際工作（但偶爾會出錯）, 例如Claude Opus 4.5</li>
+<li><strong>隱藏的 system prompt</strong>：工廠給工匠的「內部指令」</li>
+<li><strong>Context window</strong>：工匠的工作台大小（能同時處理多少資訊）</li>
+<li><strong>MCP</strong>：工匠可用的工具箱, 例如 Figma MCP</li>
+<li><strong>Skill</strong>: 工匠大腦裡的「標準作業程序 (SOP)」或「專業證照」</li>
+<li><strong>SubAgent</strong>: 工讀生, 也可以是工匠的分身</li>
+</ul>
+<p>但其實還有更多升級的方法</p>
+<p>例如, 你是否有想過, 當你在升級過程客製化新增了Skill
+這個Skill是否真的有作用？還是有優化空間？</p>
+<p>升級之路無止盡</p>
+<p>AI agent 自動化流程目前仍難以完全掌控，但產品正快速演進，像「LLM-as-a-judge」等新概念不斷出現，未來流程會越來越標準化、可預期。</p>
+
+    
+      <div class="time"><time datetime="2026-01-28">2026-01-28&nbsp;</time>
+</div>
+    
+  
+  
+    <div class="comments">
+
+</div>
+  
+
+  
+    <div class="terminal-nav">
+      <div class="back-nav">
+        
+          <a href="/murmursite/" class="back-link">← back</a>
+        
+      </div>
+    </div>
+  
+</main>
+    <footer><p>
+  &copy; Copyright 2026 &middot;
+  <a href="https://github.com/ntk148v/shibui">shibui</a>
+</p>
+</footer>
+  </body>
+</html>
